@@ -1,44 +1,68 @@
 const User = require('../models/user');
-const Task = require('../models/task')
+const Task = require('../models/task');
 const env = require('dotenv').config();
 
-exports.createTask = (req, res) => {
-    console.log(req.body)
+exports.addItemToCart = (req, res) => {
+
     User.findOne({ "_id": req.body.parentId })
         .exec((error, user) => {
-
+            if (error) { return res.status(400).json({ error }) }
             if (user) {
-                const { parentId, task } = req.body;
-                const _user = new Task({ parentId, task });
-                console.log(_user)
-                _user.save((error, data) => {
-                    if (error) {
-                        return res.status(400).json({ message: error });
+                console.log(user)
+                let condition, update
+
+                condition = { "parentId": user._id };
+                update = {
+                    "$push": {
+                        "parentID": user._id,
+                        "work": req.body.work
                     }
-                    if (data) {
-                        return res.status(201).json({ message: "Task Created Successfully..!" })
-                    }
-                });
-            }
-            if (error) {
-                return res.status(400).json({ message: "parentDoesNotExist" });
+                };
+                console.log(update, condition)
+
+                Task.findOneAndUpdate(condition, update)
+                    .exec((error, user) => {
+                        if (error) { return res.status(400).json({ error }) }
+                        if (user) {
+                            return res.status(201).json({ message: "Task Created Successfully..!" })
+                        }
+                        else {
+                            const _task = new Task({ parentId: req.body.parentId, work: req.body.work })
+                            _task.save((error, data) => {
+                                if (error) {
+                                    return res.status(400).json({ message: error });
+                                }
+                                if (data) {
+                                    return res.status(201).json({ message: "Task Created Successfully..!" })
+                                }
+                            })
+                        }
+                    });
+
+
+
             }
 
-        })
-};
+        });
+
+}
+
+
 exports.updateTask = (req, res) => {
     const { taskId, updatedParent, updatedTask } = req.body;
     const condition = { "_id": taskId };
     const update = {
-        "$set":
+        "$set": {
+            "parentId": updatedParent,
+            "work":
+            {
+                ...req.body.work,
+                task: updatedTask
+            }
+        }
 
-        {
-            parentId: updatedParent,
-            task: updatedTask
-        },
 
-
-    }; bbb
+    };
     console.log(condition, update)
     Task.findOneAndUpdate(condition, update, { new: true })
 

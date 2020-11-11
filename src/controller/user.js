@@ -80,6 +80,7 @@ exports.deleteUser = (req, res) => {
                                     }
                                 })
                         }
+                        else { return res.status(201).json({ users: "Deleted Successfully" }) }
                     });
 
             }

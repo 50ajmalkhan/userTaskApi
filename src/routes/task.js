@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { createTask, updateTask, getTask } = require('../controller/task')
+const { addItemToCart, updateTask, getTask } = require('../controller/task')
 
 
-router.post('/createtask', createTask);
+router.post('/createtask', addItemToCart);
 router.post('/getTask', getTask);
 router.post('/updatetask', updateTask);
 

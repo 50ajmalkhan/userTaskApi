@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
 const userRoutes = require("./routes/user")
 const taskRoutes = require("./routes/task")
+const detailRoutes = require("./routes/details")
 
 
 mongoose.connect(
@@ -16,6 +17,7 @@ mongoose.connect(
 app.use(bodyParser.json())
 app.use('/userapi', userRoutes);
 app.use('/taskapi', taskRoutes);
+app.use('/detailapi', detailRoutes);
 
 
 

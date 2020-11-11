@@ -1,26 +1,31 @@
 const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
 
 const taskSchema = new mongoose.Schema({
 
-    task: {
-        type: String,
-        required: true,
-        trim: true,
+    work: [{
+        task: {
+            type: String,
+            required: true,
+            trim: true,
+            index: true,
 
-    },
+        }
+    }],
 
-    parentId: {
-        type: String,
-        required: true,
-        trim: true,
+    parentId:
+        { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true, index: true, },
 
-    },
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 
 
 
 }, { timestamps: true });
+
+taskSchema.plugin(uniqueValidator, {
+    type: 'mongoose-unique-validator',
+    message: 'Error, expected {PATH} to be unique.'
+});
 module.exports = mongoose.model('Task', taskSchema);
 
 
