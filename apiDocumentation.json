@@ -1,0 +1,619 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API Documentation",
+    "description": "",
+    "version": "1.0"
+  },
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/userapi/createuser": {
+      "post": {
+        "x-swagger-router-controller": "home",
+        "operationId": "createUser",
+        "tags": [
+          "/createUser"
+        ],
+        "description": "create user",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "createuser",
+            "description": "create a user",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/createUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User Already Registered",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/CommonDetails"
+            }
+          },
+          "201": {
+            "description": "User Created Successfully..!",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/CommonDetails"
+            }
+          },
+          "400": {
+            "description": "someThing Went Wrong",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/CommonDetails"
+            }
+          }
+        }
+      }
+    },
+    "/userapi/getuser": {
+      "get": {
+        "x-swagger-router-controller": "home",
+        "operationId": "Getuser",
+        "tags": [
+          "/Getuser"
+        ],
+        "description": "getAllUSer of company",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Getting All User",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/getAllUser"
+            }
+          },
+          "400": {
+            "description": "Unable to getUsers",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/CommonDetails"
+            }
+          }
+        }
+      }
+    },
+    "/userapi/updateuser": {
+      "post": {
+        "x-swagger-router-controller": "home",
+        "operationId": "updateUser",
+        "tags": [
+          "/updateUser"
+        ],
+        "description": "update the user ",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "updateuser",
+            "description": "update a user",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/updateUser"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "updates Successfully",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/CommonDetails"
+            }
+          },
+          "400": {
+            "description": "error",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/CommonDetails"
+            }
+          }
+        }
+      }
+    },
+    "/userapi/deleteuser": {
+      "delete": {
+        "x-swagger-router-controller": "home",
+        "operationId": "deleteUser",
+        "tags": [
+          "/deleteuser"
+        ],
+        "description": "Delete the user with user id",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "deleteuser",
+            "type": "object",
+            "description": "delete by user ID",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Deleted Successfully",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/CommonDetails"
+            }
+          },
+          "400": {
+            "description": "Unable to delete",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/CommonDetails"
+            }
+          }
+        }
+      }
+    },
+    "/taskapi/createtask": {
+      "post": {
+        "x-swagger-router-controller": "home",
+        "operationId": "createtask",
+        "tags": [
+          "/createtask"
+        ],
+        "description": "We can add a new task after adding user",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "createtask",
+            "description": "Add a new task after providing essential details of user",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/createTask"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Task Created Successfully..!",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/CommonDetails"
+            }
+          },
+          "500": {
+            "description": "Error in adding Task",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/CommonDetails"
+            }
+          }
+        }
+      }
+    },
+    "/taskapi/updatetask": {
+      "post": {
+        "x-swagger-router-controller": "home",
+        "operationId": "updatetask",
+        "tags": [
+          "/Updatetask"
+        ],
+        "description": "We can Update a task ",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "UpdateTask",
+            "description": "Update task",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateTask"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "UpdateTask",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/CommonDetails"
+            }
+          },
+          "400": {
+            "description": "Error in updating feedback",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/CommonDetails"
+            }
+          }
+        }
+      }
+    },
+    "/taskapi/getTask": {
+      "post": {
+        "x-swagger-router-controller": "home",
+        "operationId": "getTask",
+        "tags": [
+          "/getTask"
+        ],
+        "description": "get All Task",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successfully fetched All Task",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/getAllTask"
+            }
+          },
+          "400": {
+            "description": "Error in fetching details",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/CommonDetails"
+            }
+          }
+        }
+      }
+    },
+    "/detailapi/counttask": {
+      "post": {
+        "x-swagger-router-controller": "home",
+        "operationId": "CountTask",
+        "tags": [
+          "/CountTask"
+        ],
+        "description": "fetch detail about user and which user has which task",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "UpdateTask",
+            "description": "Update task",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "parentId": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successfully fetched",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/countDetails"
+            },
+            "400": {
+              "description": "Unable to fetch count",
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/statusapi/taskstatus": {
+      "post": {
+        "x-swagger-router-controller": "home",
+        "operationId": "taskstatus",
+        "tags": [
+          "/taskstatus"
+        ],
+        "description": "Add status to task",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "taskstatus",
+            "description": "Update task",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "parentId": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status created Successfully"
+          },
+          "400": {
+            "description": "Unable to Add",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/CommonDetails"
+            }
+          }
+        }
+      }
+    },
+    "/detailapi/detailtask": {
+      "get": {
+        "x-swagger-router-controller": "home",
+        "operationId": "detailtask",
+        "tags": [
+          "/detailtask"
+        ],
+        "description": "fetch detail about user and which user has which task",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successfully fetched",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/Details"
+            }
+          },
+          "400": {
+            "description": "Unable to fetch active devices details",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/CommonDetails"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "createUser": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "getAllUser": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "userDetails": {
+          "$ref": "#/definitions/userResponse"
+        }
+      }
+    },
+    "userResponse": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "hashed_password": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        }
+      }
+    },
+    "updateUser": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "updatedEmail": {
+          "type": "string"
+        },
+        "updatedPassword": {
+          "type": "string"
+        }
+      }
+    },
+    "CommonDetails": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "status": {
+          "type": "number"
+        }
+      }
+    },
+    "createTask": {
+      "type": "object",
+      "properties": {
+        "parentId": {
+          "type": "string"
+        },
+        "work": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "task": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "countDetails": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "string"
+        }
+      }
+    },
+    "UpdateTask": {
+      "type": "object",
+      "properties": {
+        "taskId": {
+          "type": "string"
+        },
+        "updatedParent": {
+          "type": "string"
+        },
+        "updatedTask": {
+          "type": "string"
+        }
+      }
+    },
+    "getAllTask": {
+      "type": "object",
+      "properties": {
+        "_Id": {
+          "type": "string"
+        },
+        "parentId": {
+          "type": "string"
+        },
+        "work": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "task": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "Details": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "work": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "task": {
+                "type": "string"
+              },
+              "_id": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parentId": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "hashed_password": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

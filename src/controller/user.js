@@ -61,6 +61,7 @@ exports.updateUser = (req, res) => {
 };
 exports.deleteUser = (req, res) => {
     const _id = req.body;
+
     User.deleteOne({ _id })
         .exec((error, _users) => {
             if (error) { return res.status(400).json({ error }) }

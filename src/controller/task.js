@@ -2,7 +2,7 @@ const User = require('../models/user');
 const Task = require('../models/task');
 const env = require('dotenv').config();
 
-exports.addItemToCart = (req, res) => {
+exports.addTask = (req, res) => {
 
     User.findOne({ "_id": req.body.parentId })
         .exec((error, user) => {

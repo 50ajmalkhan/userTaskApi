@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const Task = require('../models/task');
+const NodeRSA = require('node-rsa');
 
 // const createCategory = async (userss) => {
 //     console.log(userss)
@@ -37,7 +38,7 @@ exports.detailTask = (req, res) => {
 
 
 
-    Task.find({}).populate('parentId')
+    Task.find({}).populate('parentId').populate('childId')
         .exec((error, user) => {
             if (user) {
                 res.status(200).json({ message: user });
@@ -64,3 +65,10 @@ exports.countTask = (req, res) => {
         });
 }
 
+// exports.nodersa = () => {
+
+//     const key = new NodeRSA({ b: 512 });
+//     console.log(key)
+//     const decrypted = key.decrypt("QNa9nwCj3ZdGPZNkIlvw/PQN/B1ZfRqRK1d3fv4ztZZUQSc4bYo0Li0QbKkQaWhhB14S92L6SNcaFyTp3L3t1Q==", 'utf8');
+//     console.log('decrypted: ', decrypted);
+// }

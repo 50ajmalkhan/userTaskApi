@@ -13,7 +13,8 @@ const taskSchema = new mongoose.Schema({
 
         }
     }],
-
+    childId:
+        { type: mongoose.Schema.Types.ObjectId, ref: 'Status' },
     parentId:
         { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true, index: true, },
 
